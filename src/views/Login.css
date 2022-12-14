@@ -1,0 +1,15 @@
+.form-connexion,.group {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+label , input {
+    padding: 1em;
+}
+
+.text-connexion{
+    text-align: center;
+    margin-top: 5em;
+}

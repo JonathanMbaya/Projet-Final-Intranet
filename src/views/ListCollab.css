@@ -1,0 +1,11 @@
+.list-collab {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+i{
+    padding: 10px;
+}

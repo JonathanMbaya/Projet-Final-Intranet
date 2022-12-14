@@ -1,0 +1,18 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.element-Nav {
+    display: flex;
+    padding: 1em;
+}
+
+.btn-nav-list{
+    margin-right: 2px;
+}
+.btn-nav-connexion{
+    margin-right: 2px;
+}
