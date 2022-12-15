@@ -1,5 +1,6 @@
 import './Header.css';
 import BtnConnexion from './BtnConnexion';
+import BtnAddUser from './BtnAddUser';
 
 
 
@@ -9,8 +10,11 @@ function Header() {
         <div className='container-fluid Navbar'>
 
             <div className='element-Nav'>
-                <h2>Intranet</h2>
+                <h1>Intranet</h1>
 
+            </div>
+            <div>
+                <BtnAddUser/>
             </div>
             <div>
                 <BtnConnexion/>
