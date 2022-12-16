@@ -5,6 +5,7 @@ import BtnAddUser from './BtnAddUser';
 
 
 function Header() {
+
     return (
 
         <div className='container-fluid Navbar'>
@@ -13,9 +14,12 @@ function Header() {
                 <h1>Intranet</h1>
 
             </div>
+
+            
             <div>
                 <BtnAddUser/>
             </div>
+
             <div>
                 <BtnConnexion/>
             </div>

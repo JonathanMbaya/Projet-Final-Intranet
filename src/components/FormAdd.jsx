@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { collabService } from '../services/collabService';
+import {collabService } from '../services/collabService';
 
 function FormAdd () {
 
-    let navigate = useNavigate()
-
-    const [user, setUser] = useState([])
-    const [gender, setGender] = useState("");
-    const [service,setService] = useState("");
+    const [user, setUser] = useState([]);
 
     const onChange = (e) => {
         setUser({
@@ -21,9 +17,6 @@ function FormAdd () {
         e.preventDefault()
         console.log(user)
         collabService.getCollabAdd(user)
-
-        .then(res => navigate('/collaborateurs'))
-        .catch(err => console.log(err))
     }
 
     return (
@@ -33,31 +26,29 @@ function FormAdd () {
                 <div className="group">
                     <label htmlFor="civile">Civilité</label>
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
-
+                        type="text"
                         name="gender"
                         id="gender"
-                        value={gender}
-                        onChange={(event) => setGender(event.target.value)}
-                        
+                        onChange={onChange}
+                        required="required"
                     >
-                        <option value="male" >Homme</option>
-                        <option value="female">Femme</option>
+                        <option  value={user.gender} onChange={onChange} required="required">male</option>
+                        <option  value={user.gender} onChange={onChange} required="required">female</option>
                     </select>
                 </div>
 
                 <div className="group">
                     <label htmlFor="categorie">Catégorie</label>
                     <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
-                    
+                        type="text"
                         name="service"
                         id="service"
-                        value={service}
-                        onChange={(event) => setService(event.target.value)}
-                    
+                        onChange={onChange}
+                        required ="required"
                     >
-                        <option value="Marketing">Marketing</option>
-                        <option value="Technique">Technique</option>
-                        <option value="Client">Client</option>
+                        <option  value={user.service} onChange={onChange} required ="required">Marketing</option>
+                        <option  value={user.service} onChange={onChange} required="required">Technique</option>
+                        <option  value={user.service} onChange={onChange} required="required">Client</option>
                     </select>
                 </div>
 
@@ -78,11 +69,6 @@ function FormAdd () {
 
                 <div className="group">
                     <label htmlFor="password">Mot de passe</label>
-                    <input type="password" name="password" value={user.password} placeholder='(min. 8 caractères)' onChange={onChange}/>
-                </div>
-
-                <div className="group">
-                    <label htmlFor="password">Confirmation</label>
                     <input type="password" name="password" value={user.password} placeholder='(min. 8 caractères)' onChange={onChange}/>
                 </div>
 

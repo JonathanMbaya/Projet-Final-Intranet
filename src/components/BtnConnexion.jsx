@@ -1,8 +1,10 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { accountAuth } from "../services/Account.auth";
+import { accountAuth } from "../services/Account.auth"
+
 
 function BtnConnexion () {
+
 
     let navigate = useNavigate()
 
@@ -10,6 +12,7 @@ function BtnConnexion () {
         accountAuth.logout()
         navigate('/')
     }
+
 
     if (!accountAuth.isLogged) {
 

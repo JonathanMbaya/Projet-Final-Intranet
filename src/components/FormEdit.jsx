@@ -20,7 +20,7 @@ function FormEdit () {
     const onSubmit = (e) => {
         e.preventDefault()
         console.log(user)
-        collabService.getCollabEdit(user)
+        collabService.getCollabEdit(user, id)
     }
 
     useEffect(() =>{
@@ -43,74 +43,79 @@ function FormEdit () {
     return (
         <div>
 
-            <form onSubmit={onSubmit}>
+            <form id={user.id} onSubmit={onSubmit}>
                 <div className="group">
                     <label htmlFor="civile">Civilité</label>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected>{user.gender}</option>
-                        <option value="male">Homme</option>
-                        <option value="female">Femme</option>
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                        type="text"
+                        name="gender"
+                        id="gender"
+                        onChange={onChange}
+                        required="required"
+                    >
+                        <option value={user.gender} onChange={onChange} required="required">male</option>
+                        <option value={user.gender} onChange={onChange} required="required">female</option>
                     </select>
                 </div>
 
                 <div className="group">
                     <label htmlFor="categorie">Catégorie</label>
-                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected >{user.service}</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Technique">Technique</option>
-                        <option value="Client">Client</option>
+                    <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" 
+                        type="text"
+                        name="service"
+                        id="service"
+                        onChange={onChange}
+                        required ="required"
+                    >
+                        <option name="service" value={user.service} onChange={onChange} required ="required">Marketing</option>
+                        <option name="service"  value={user.service} onChange={onChange} required="required">Technique</option>
+                        <option name="service"  value={user.service} onChange={onChange} required="required">Client</option>
                     </select>
                 </div>
 
                 <div className="group">
                     <label htmlFor="lastname">Nom</label>
-                    <input type="text" name="lastname" value={user.lastname}/>
+                    <input type="text" name="lastname" value={user.lastname} onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="firstname">Prenom</label>
-                    <input type="text" name="firstname" value={user.firstname}/>
+                    <input type="text" name="firstname" value={user.firstname} onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="email">Email</label>
-                    <input type="text" name="email" value={user.email}/>
+                    <input type="text" name="email" value={user.email} onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="password">Mot de passe</label>
-                    <input type="text" name="password" value={user.password} placeholder='(min. 8 caractères)'/>
-                </div>
-
-                <div className="group">
-                    <label htmlFor="password">Confirmation</label>
-                    <input type="text" name="password" value={user.password} placeholder='(min. 8 caractères)'/>
+                    <input type="password" name="password" value={user.password} placeholder='(min. 8 caractères)' onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="phone">Téléphone</label>
-                    <input type="text" name="phone" value={user.phone} placeholder='(ex: 07-00-00-00-00)'/>
+                    <input type="text" name="phone" value={user.phone} placeholder='(ex: 07-00-00-00-00)' onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="birthdate">Date de naissance</label>
-                    <input type="date" name="birthdate" value={user.birthdate} placeholder='dd/mm/yyyy'/>
+                    <input type="date" name="birthdate" value={user.birthdate} placeholder='dd/mm/yyyy' onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="city">Ville</label>
-                    <input type="text" name="city" value={user.city}/>
+                    <input type="text" name="city" value={user.city} onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="country">Pays</label>
-                    <input type="text" name="country" value={user.country}/>
+                    <input type="text" name="country" value={user.country} onChange={onChange}/>
                 </div>
 
                 <div className="group">
                     <label htmlFor="photo">URL de la photo</label>
-                    <input type="text" name="photo" value={user.photo}/>
+                    <input type="text" name="photo" value={user.photo} onChange={onChange}/>
                 </div>
 
                 <div className="group">
