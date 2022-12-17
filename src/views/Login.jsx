@@ -1,16 +1,22 @@
 import './Login.css'
 
 import {useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import {useForm} from 'react-hook-form'
 
-import HeaderConnex from '../components/HeaderConnex';
 import { accountAuth } from '../services/Account.auth';
+import HeaderConnex from '../components/HeaderConnex';
 
 
 function Login () {
+
+
     let navigate = useNavigate()
     // const [login, setLogin] = useState('')
     // const [password, setPassword] = useState('')
+
+    const { register, handleSubmit } = useForm()
+  
 
     const [identify, setIdentify] = useState({
         email: '',
@@ -24,8 +30,8 @@ function Login () {
         })
     }
 
+
     const onSubmit = (e) => {
-        e.preventDefault()
 
         accountAuth.login(identify)
             .then (res => {
@@ -39,39 +45,72 @@ function Login () {
 
     return (
 
-        <div>
+        <div className='login'>
 
             <HeaderConnex/>
 
-            <div className='text-connexion'>
+            <div className='group-login container col-md-6 col-12'>
 
-                <h1>Connexion</h1>
+                <div className='text-connexion'>
 
-                <h2> Pour vous connecter, entrez votre identifiant et votre mot de passe</h2>
+                    <h1>Connexion</h1>
 
-            </div>
+                    <h2> Pour vous connecter, entrez votre identifiant et votre mot de passe</h2>
 
-
-            <form onSubmit={onSubmit} className='form-connexion'>
-
-                <div className="group">
-                    <label htmlFor='email'>Adresse email </label>
-                    <input type="text" name="email" value={identify.email} onChange={onChange} placeholder='ex:jonathanmbaya@gmail.com'/>
                 </div>
 
-                <div className="group">
-                    <label htmlFor='password'>Mot de passe </label>
-                    <input type="password" name="password" value={identify.password} onChange={onChange}/>
-                </div>
+    {/* 
+                <form id={identify.id} onSubmit={onSubmit} className='form-connexion'>
 
-                <div className="group">
-                    {/* <Link to={'/accueil'} className='nav-link'> */}
+                    <div className="group">
+                        <label htmlFor='email'>Adresse email </label>
+                        <input type="text" name="email" value={identify.email} onChange={onChange} placeholder='ex:jonathanmbaya@gmail.com'/>
+                    </div>
+
+                    <div className="group">
+                        <label htmlFor='password'>Mot de passe </label>
+                        <input type="password" name="password" value={identify.password} onChange={onChange}/>
+                    </div>
+
+                    <div className="group"> */}
+                        {/* <Link to={'/accueil'} className='nav-link'> */}
+                            {/* <input type="submit" value="Connexion" /> */}
+                        {/* </Link> */}
+                    {/* </div>
+
+                </form> */}
+
+                <form key={identify.id} id={identify.id} onSubmit={handleSubmit(onSubmit)} className='form-connexion'>
+                    <div className='group'>
+                        <label htmlFor='email'>Email</label>
+                        <input
+                        type='email'
+                        name="email"
+                        className='form-input'
+                        {...register('email')}
+                        value={identify.email}
+                        required
+                        onChange={onChange}
+                        />
+                    </div>
+                    <div className='group'>
+                        <label htmlFor='password'>Password</label>
+                        <input
+                        type='password'
+                        name="password"
+                        className='form-input'
+                        {...register('password')}
+                        value={identify.password}
+                        required
+                        onChange={onChange}
+                        />
+                    </div>
+
+                    <div className='group btn-connexion-login'>
                         <input type="submit" value="Connexion" />
-                    {/* </Link> */}
-                </div>
-
-            </form>
-
+                    </div>
+                </form>
+            </div>
         </div>
 
     )

@@ -1,8 +1,12 @@
-.Navbar {
+.Navbar-home {
+    position: fixed;
+    top: 0px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: aquamarine;
+    background-image: url('../assets/background-home.png');
+    background-repeat: no-repeat;
 }
 
 .element-Nav {
@@ -15,4 +19,8 @@
 }
 .btn-nav-connexion{
     margin-right: 2px;
+}
+
+span{
+    color: #BE3455;
 }

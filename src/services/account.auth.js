@@ -17,6 +17,7 @@ let isLogged = () => {
     return token
 }
 
+
 let getToken = () => {
     return localStorage.getItem('token')
 }

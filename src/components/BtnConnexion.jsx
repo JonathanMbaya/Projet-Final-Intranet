@@ -30,10 +30,20 @@ function BtnConnexion () {
 
         return (
             <div className='element-Nav'>
-                <Link to={'/collaborateurs'}><button className='btn-nav-list'><i className="fa-solid fa-list-ul"></i>Liste</button></Link>
+
+                {
+
+                    <Link to='/ajouter'>
+                        <button className='btn-add'><i className="fa-solid fa-person-circle-plus"></i>Ajouter</button>
+                    </Link>
+                }
+
+
+
+                <Link to={'/collaborateurs'}><button className='btn-nav-list btn-add'><i className="fa-solid fa-list-ul"></i>Liste</button></Link>
 
                 <div>
-                    <button onClick={logout} className='btn-nav-connexion'><i className="fa-solid fa-user"></i>Déconnexion</button>
+                    <button onClick={logout} className='btn-nav-connexion btn-add'><i className="fa-solid fa-user"></i>Déconnexion</button>
                 </div>
                 
 

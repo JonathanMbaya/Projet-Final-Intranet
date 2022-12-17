@@ -1,16 +1,17 @@
+import {Route, Routes} from 'react-router-dom'
 import './App.css'
 
 import AuthGuard from './services/AuthGuard'
 import Login from './views/Login'
 import Home from './views/Home'
 import Error from './views/Error'
-import {Route, Routes} from 'react-router-dom'
 import ListCollab from './views/ListCollab'
 import CollabEdit from './views/CollabEdit'
 import CollabAdd from './views/CollabAdd'
 
-function App() {
 
+
+function App() {
 
   return (
     <div className="App">
@@ -19,9 +20,7 @@ function App() {
         <Route index element={<Login/>}/>
 
         <Route path='/login' element={
-          <AuthGuard>
-            <Login/>
-          </AuthGuard>
+          <Login/>
         }/>
 
 
@@ -32,7 +31,6 @@ function App() {
         }/>
 
         <Route path='/ajouter' element={<CollabAdd/>}/>
-
         <Route path='collaborateurs' element={<ListCollab/>}/>
         <Route path='collaborateurs/edit/:id' element={<CollabEdit/>}/>
 

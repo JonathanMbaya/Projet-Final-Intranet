@@ -15,6 +15,7 @@ import { accountAuth } from '../services/Account.auth';
     // Stocker les données dans un tableau avec useState
 
      const [collabs, setCollab] = useState ([]);
+
     const flag = useRef(false)
 
     // Fonction de chargement de la requête axios à chaque affichage de la page (useEffect) depuis le fichier request.jsx
@@ -37,43 +38,69 @@ import { accountAuth } from '../services/Account.auth';
   
     }, []);
 
+    const delUser = (id) => {
+        console.log(id)
+        collabService.deleteUser(id)
+        .then(res =>{
+            accountAuth.getToken(res.token)
+            console.log(res)
+            setCollab(collabs.filter(collab => collab.id != id))
+        })
+        .catch(err => console.log(err))
+
+
+    }
+
     return (
-        <div className='col-12'>
+        <div className='list col-12'>
 
             <Header/>
 
-            <div>
+            <div className='container-fluid'>
 
-                <Link to={'/accueil'}><p><i class="fa-solid fa-house"></i> Retourner à la page d'accueil</p></Link>
-                
-            </div>
+                <h1>Liste des collaborateurs</h1>
 
-            <h1>Liste des collaborateurs</h1>
+                <FilterCollab/>
 
-            <FilterCollab/>
+                <div className='container row list-collab-all col-md-12 col-sm-12 col-12 offset-md-1'>
+                    {collabs.map((collab) =>
+                    
+                    <div id={collab.id} key={collab.id} className='list-collab col-md-4 offset-md-2'>
 
-            {collabs.map((collab) =>
-            
-            <div id={collab.id} key={collab.id} className='list-collab'>
+                        <div className='service'>
+                            <h4>{collab.service}</h4>
+                        </div>
 
-                <img className='img-fluid col-md-1' src={collab.photo} />
+                        <div className='group-info'>
+                            <img className='img-fluid img-user' src={collab.photo} />
+                            <h4><i className="fa-solid fa-user"></i> {collab.firstname} {collab.lastname}</h4>
+                            <h4><i className="fa-solid fa-location-dot"></i> {collab.city}, {collab.country}</h4>
+                            <h4><i className="fa-solid fa-inbox"></i> {collab.email}</h4>
+                            <h4><i className="fa-solid fa-phone"></i> {collab.phone}</h4>
+                            <h4><i className="fa-solid fa-cake-candles"></i> Anniversaire : {collab.birthdate}</h4>
+                        </div>
 
-                <div className='col-md-3'>
-                    <h3><i className="fa-solid fa-user"></i>{collab.firstname} {collab.lastname}</h3>
-                    <h3><i className="fa-solid fa-location-dot"></i>{collab.city}, {collab.country}</h3>
-                    <h3><i className="fa-solid fa-inbox"></i>{collab.email}</h3>
-                    <h3><i className="fa-solid fa-phone"></i>{collab.phone}</h3>
-                    <h3><i className="fa-solid fa-cake-candles"></i>Anniversaire : {collab.birthdate}</h3>
+                        {
+
+                            <div>
+                                <Link to={`edit/${collab.id}`}><button className='btn-add'>Modifier</button></Link>
+                                <button onClick={delUser(collab.id)} className='btn-add'>Supprimer</button>
+                            </div>
+                        }
+
+
+
+                    </div>
+
+                    )}
+
                 </div>
 
-                <div>
-                    <Link to={`edit/${collab.id}`}><button>Modifier</button></Link>
-                    <Link><button id={collab.id}>Supprimer</button></Link>
-                </div>
-
             </div>
 
-            )}
+
+
+
             
         </div>
     );

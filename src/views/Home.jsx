@@ -10,7 +10,11 @@ function Home () {
 
             <Header/>
 
-            <h1>Bienvenue sur l'intranet</h1>
+            <div className='text-home'>
+                <h1 className='typed-out'>Bienvenue sur l'intranet</h1>
+            </div>
+
+
 
             <p>La plateforme de l'entreprise qui vous permet de retrouver tous vos collaborateurs.</p>
 

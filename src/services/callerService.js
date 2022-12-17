@@ -15,4 +15,4 @@ import { accountAuth } from "./Account.auth";
         return request
     })
 
-export default Axios
+export default Axios 

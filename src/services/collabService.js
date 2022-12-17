@@ -1,9 +1,7 @@
 import Axios from './callerService';
-import { accountAuth } from './Account.auth';
 
 
 let getAllCollab = () => {
-
     return Axios.get(`api/collaborateurs`);
 }
 
@@ -20,21 +18,26 @@ let getCollabRandom = () => {
 }
 
 
-let getCollabEdit= () => {
+let getCollabEdit= (user, id) => {
 
-    return Axios.put(`/api/collaborateurs/`+id , user);
+    return Axios.put(`/api/collaborateurs/`+id , user );
 
 }
 
 
 let getCollabAdd= (user) => {
-    return Axios.post(`/api/collaborateurs/`, user);
+    return Axios.post(`/api/collaborateurs`, user);
 
+}
+
+
+let deleteUser = (id) => {
+    return Axios.delete(`/api/collaborateurs/`+id);
 }
 
 
 
 export const collabService = {
-    getAllCollab, getCollab, getCollabRandom, getCollabEdit, getCollabAdd
+    getAllCollab, getCollab, getCollabRandom, getCollabEdit, getCollabAdd, deleteUser
 }
 

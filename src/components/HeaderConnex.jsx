@@ -1,13 +1,16 @@
-import './Header.css';
+import './HeaderConnex.css';
 
 function HeaderConnex() {
 
     return (
 
-        <div className='container-fluid Navbar'>
+        <div className='Navbar'>
 
             <div className='element-Nav'>
-                <h2>Intranet</h2>
+                
+                <h1><span>In.</span>tranet</h1>
+
+                <h1></h1>
             </div>
 
         </div>

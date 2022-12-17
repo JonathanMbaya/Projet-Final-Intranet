@@ -1,15 +1,59 @@
+.login {
+    height: 100vh;
+    background-image: url('../assets/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.text-connexion h1{
+    color: #BE3455;
+}
+
 .form-connexion,.group {
     display: flex;
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    height: 200px;
 }
 
 label , input {
-    padding: 1em;
+    padding: 0.5em;
 }
 
 .text-connexion{
     text-align: center;
-    margin-top: 5em;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.group-login{
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding-bottom: 40px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+input {
+    border-radius: 10px;
+}
+
+
+.btn-connexion-login input{
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #BE3455;
+    border: none;
+    color: white;
+
+}
+
+.btn-connexion-login input:hover{
+    transition: 0.8s;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #FFD3D3;
+    border: none;
+    color: #BE3455;
+
 }

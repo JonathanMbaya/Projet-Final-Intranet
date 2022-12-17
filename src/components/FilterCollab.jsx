@@ -62,31 +62,31 @@ const FilterCollab = () => {
     }
 
     return (
-        <div className='container filters'>
+        <div className='container'>
 
-            <form onSubmit={onSubmit}>
+            <form className='row' onSubmit={onSubmit}>
 
-            <div className='group'>
-                <input type="text" id="research" name="research" placeholder='Recherche' onChange={onChange} />
-            </div>
+                <div className='group-filter'>
+                    <input type="text" id="research" name="research" placeholder='Recherche' onChange={onChange} />
+                </div>
 
-            <div className='group'>
-                <h4 htmlFor="searchby">Rechercher par :</h4>
-                <select id="research" name="research" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={onChange}>
-                    <option value="1">Nom</option>
-                    <option value="2">Localisation</option>
-                </select>
-            </div>
+                <div className='group-filter'>
+                    <h4 htmlFor="searchby">Rechercher par :</h4>
+                    <select id="research" name="research" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={onChange}>
+                        <option value="1">Nom</option>
+                        <option value="2">Localisation</option>
+                    </select>
+                </div>
 
-            <div className='group'>
-                <h4 htmlFor="searchby">Catégorie</h4>
-                <select id="category" name="category" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={onChange}>
-                    <option value="all">Tous</option>
-                    <option value="Technique">Technique</option>
-                    <option value="Marketing<">Marketing</option>
-                    <option value="Client">Client</option>
-                </select>
-            </div>
+                <div className='group-filter'>
+                    <h4 htmlFor="searchby">Catégorie</h4>
+                    <select id="category" name="category" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={onChange}>
+                        <option value="all">Tous</option>
+                        <option value="Technique">Technique</option>
+                        <option value="Marketing<">Marketing</option>
+                        <option value="Client">Client</option>
+                    </select>
+                </div>
 
             </form>
             

@@ -1,0 +1,29 @@
+.btn-add{
+    margin: 10px;
+    padding: 10px 40px;
+    border-radius: 10px;
+    background-color: #BE3455;
+    border: none;
+    color: white;
+
+}
+
+.btn-add:hover {
+    transition: 0.8s;
+    margin: 10px;
+    padding: 10px 35px;
+    background-color: #FFD3D3;
+    border: none;
+    color: #BE3455;
+
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+    color: black;
+}
