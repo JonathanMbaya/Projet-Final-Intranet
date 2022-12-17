@@ -3,7 +3,10 @@ import Header from '../components/Header'
 import CollabCard from '../components/CollabCard'
 
 
+
 function Home () {
+
+    // const [identify, setIdentify] = useContext(LoginContext);
     return (
 
         <div className='home'>

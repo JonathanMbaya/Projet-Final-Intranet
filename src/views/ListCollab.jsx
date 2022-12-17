@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
-import FilterCollab from '../components/FilterCollab';
+import '../components/FilterCollab.css'
+import '../components/FormEdit.css'
 import { collabService } from '../services/collabService';
 
 import './ListCollab.css'
@@ -15,6 +16,13 @@ import { accountAuth } from '../services/Account.auth';
     // Stocker les données dans un tableau avec useState
 
      const [collabs, setCollab] = useState ([]);
+     const [searchTerm, setSearchTerm] = useState([]);
+     const [filters, setFilters] = useState({
+        searchBar: "",
+        searchcase: "",
+        category: "all"
+    })
+
 
     const flag = useRef(false)
 
@@ -38,6 +46,34 @@ import { accountAuth } from '../services/Account.auth';
   
     }, []);
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+    }
+
+
+    const handleSearchTerm = (e) => {
+        const { name, value } = e.target
+        filters[name] = value
+        setFilters(filters)
+        let index
+        switch (filters.searchcase) {
+            case "1":
+                index = collabs.filter(collab => (collab.firstname.toLowerCase().includes(filters.searchBar.toLowerCase()) || collab.lastname.toLowerCase().includes(filters.searchBar.toLowerCase())))
+                break;
+            case "2":
+                index = collabs.filter(collab => (collab.city.toLowerCase().includes(filters.searchBar.toLowerCase()) || collab.country.toLowerCase().includes(filters.searchBar.toLowerCase())))
+                break;
+            default:
+                break;
+        }
+        if (filters.category !== "all") {
+            index = index.filter(collab => (collab.service.toLowerCase() === filters.category.toLowerCase()))
+        }
+        setSearchTerm(index)
+
+
+    };
+
     const delUser = (id) => {
         console.log(id)
         collabService.deleteUser(id)
@@ -60,11 +96,40 @@ import { accountAuth } from '../services/Account.auth';
 
                 <h1>Liste des collaborateurs</h1>
 
-                <FilterCollab/>
+                {/* <FilterCollab/> */}
+
+                <form onSubmit={onSubmit} className='row'>
+
+                    <div className='group-filter'>
+                        <input type="text" id="searchBar" name="searchBar" placeholder='Recherche' onChange={handleSearchTerm} />
+                    </div>
+
+                    <div className='group-filter'>
+                        <h4 htmlFor="searchby">Rechercher par :</h4>
+                        <select id="searchcase" name="searchcase" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleSearchTerm}>
+                            <option select>Choisis un critère</option>
+                            <option value="1">Nom</option>
+                            <option value="2">Localisation</option>
+                        </select>
+                    </div>
+
+                    <div className='group-filter'>
+                        <h4 htmlFor="searchby">Catégorie</h4>
+                        <select id="category" name="category" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleSearchTerm}>
+                            <option value="all">Tous</option>
+                            <option value="Technique">Technique</option>
+                            <option value="Marketing<">Marketing</option>
+                            <option value="Client">Client</option>
+                        </select>
+                    </div>
+
+                </form>
 
                 <div className='container row list-collab-all col-md-12 col-sm-12 col-12 offset-md-1'>
-                    {collabs.map((collab) =>
-                    
+                    {
+                        searchTerm && 
+                        searchTerm.map((collab) =>
+
                     <div id={collab.id} key={collab.id} className='list-collab col-md-4 offset-md-2'>
 
                         <div className='service'>

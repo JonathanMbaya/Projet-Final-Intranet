@@ -1,19 +1,19 @@
 import './Login.css'
 
 import {useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import {useForm} from 'react-hook-form'
 
 import { accountAuth } from '../services/Account.auth';
 import HeaderConnex from '../components/HeaderConnex';
+
+export const LoginContext = createContext()
 
 
 function Login () {
 
 
     let navigate = useNavigate()
-    // const [login, setLogin] = useState('')
-    // const [password, setPassword] = useState('')
 
     const { register, handleSubmit } = useForm()
   
