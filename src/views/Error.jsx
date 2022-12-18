@@ -10,7 +10,7 @@ function Error () {
 
             <h2>Vous avez perdu la connexion </h2>
 
-            <Link to='/login'><button className='btn-connect-error'> Se connecter</button></Link>
+            <Link to='/login'><button className='btn-connect-error btn-add'> Se connecter</button></Link>
             
             
         </div>

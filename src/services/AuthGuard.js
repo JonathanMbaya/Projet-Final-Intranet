@@ -6,8 +6,8 @@ function AuthGuard ({children}) {
 
     let navigate = useNavigate()
 
-    if(!accountAuth.isLogged()){
-        return navigate('/login')
+    if(!window.localStorage.getItem("token")){
+        return navigate('/*')
     }
     
     return  children

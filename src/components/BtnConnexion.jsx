@@ -3,17 +3,27 @@ import { useNavigate, Link } from 'react-router-dom';
 import { accountAuth } from "../services/Account.auth"
 
 
+
+// Bouton de déconnexion avec contion d'affichage du bouton d'ajout
+
 function BtnConnexion () {
+
+    // vérification du statut de l'utilisateur 
 
     const isAdmin = window.localStorage.getItem('isAdmin');
 
     let navigate = useNavigate()
+
+    // Action de déconnection onClick
 
     const logout = () => {
         accountAuth.logout()
         navigate('/')
     }
 
+
+    // Condition d'affichage 
+    
     if (isAdmin === 'false' ) {
 
         return (

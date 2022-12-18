@@ -10,7 +10,6 @@ import { collabService } from '../services/collabService';
 import { accountAuth } from '../services/Account.auth';
 
 import './ListCollab.css'
-import '../components/FilterCollab.css'
 
 
  function ListCollab () {
@@ -79,26 +78,29 @@ import '../components/FilterCollab.css'
     };
 
 
-    // const delUser = (id) => {
-    //     const deleteValid = () => {
-    //         collabService.deleteUser(id)
-    //         .then(res =>{
-    //             accountAuth.getToken(res.token)
-    //             console.log(res)
-    //             setCollab(collabs.filter(collab => collab.id != id))
-    //         })
-    //         .catch(err => console.log(err))
-    //     }
+    const delUser = (id) => {
+        const deleteValid = () => {
+            collabService.deleteUser(id)
+            .then(res =>{
+                accountAuth.getToken(res.token)
+                console.log(res)
+                setCollab(collabs.filter(collab => collab.id != id))
+            })
+            .catch(err => console.log(err))
+        }
 
-    //     deleteValid(id)
-    // }
+        deleteValid(id)
+    }
 
 
     return (
         <div className='list col-12'>
+            <div id='scrolltop'></div>
 
         <div className='scrollUp'>
-            <i class="fa-solid fa-chevron-up"></i>
+            <a Href="#scrolltop">
+                <i class="fa-solid fa-chevron-up"></i>
+            </a>
         </div>
 
 
@@ -116,10 +118,6 @@ import '../components/FilterCollab.css'
 
                 </div>
 
-
-
-                {/* <FilterCollab/> */}
-
                 <form onSubmit={onSubmit} className='container col-md-12 row'>
 
                     <div className='group-filter col-md-2'>
@@ -132,7 +130,7 @@ import '../components/FilterCollab.css'
 
                     <div className='group-filter col-md-3'>
                         <select id="searchcase" name="searchcase" className="form-select form-select-lg mb-3 col-md-4" aria-label=".form-select-lg example" onChange={onChange}>
-                            <option select>Choisis un critère</option>
+                            <option selected >Choisis un critère</option>
                             <option value="1">Nom</option>
                             <option value="2">Localisation</option>
                         </select>
@@ -140,6 +138,7 @@ import '../components/FilterCollab.css'
 
                     <div className='group-filter col-md-3'>
                         <select id="category" name="category" className="form-select form-select-lg mb-3 col-md-4" aria-label=".form-select-lg example" onChange={onChange}>
+                            <option selected >Aucun</option>
                             <option value="all">Tous</option>
                             <option value="Technique">Technique</option>
                             <option value="Marketing<">Marketing</option>
@@ -158,9 +157,14 @@ import '../components/FilterCollab.css'
                             {searchTerm.map((collab, index) =>(
 
                             <CollaboCard
-                            collab={collab} key={index} 
-                            />
 
+                                collab={collab}
+                                
+                                key={index}
+
+                                delUser={delUser}
+
+                            />
 
                             ))}
 

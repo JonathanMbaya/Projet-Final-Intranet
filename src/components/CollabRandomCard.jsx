@@ -11,55 +11,52 @@ import './CollabCard.css'
 
 function CollabCard (){
 
-       // Stocker les données dans un tableau avec useState
+    // Stocker les données dans un tableau avec useState
 
-       const [card, setCard] = useState ({});
+    const [card, setCard] = useState ({});
 
-       const flag = useRef(false)
+    // Requete useEffect Collaborateur Random
 
-
-       useEffect(() => {   
+    useEffect(() => {   
     
+        collabService.getCollabRandom()
+
+        .then(res =>{ 
+            accountAuth.getToken(res.data.token)
+            console.log(res.data)
+            setCard(res.data)
+        })
+
+        .catch(err => console.log(err))
   
 
+    }, []);
+
+   
+    // Refresh le collaborateur au hasard
+
+    const onClick = () => {
+
+        const againCollab = () => {   
+    
+        
             collabService.getCollabRandom()
             .then(res =>{ 
+
                 accountAuth.getToken(res.data.token)
                 console.log(res.data)
                 setCard(res.data)
             })
-
+        
             .catch(err => console.log(err))
-  
-
-    }, []);
-   
-       // Fonction de chargement de la requête axios à chaque affichage de la page (useEffect) depuis le fichier request.jsx
-
-       const onClick = () => {
-
-            const againCollab = () => {   
-    
-        
-                    collabService.getCollabRandom()
-                    .then(res =>{ 
-                        accountAuth.getToken(res.data.token)
-                        console.log(res.data)
-                        setCard(res.data)
-                    })
-        
-                    .catch(err => console.log(err))
         
         
-            }
+        }
 
-            againCollab()
+        againCollab()
 
-       }
+    }
      
-
-   
-
 
     return (
         <div>

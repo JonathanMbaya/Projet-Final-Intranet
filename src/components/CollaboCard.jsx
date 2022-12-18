@@ -3,24 +3,25 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import './CollabCard.css'
 
-
 import PopUp from './PopUp';
+import './PopUp.css'
 
-function CollaboCard ({collab , index }) {
+
+
+function CollaboCard ({collab , index, delUser }) {
+
+    // vérification du statut de l'utilisateur 
+
     const isAdmin = window.localStorage.getItem('isAdmin');
+
+    // Pop de confirmation avant la suppression d'un collaborateur
 
     const [buttonPopUp , setButtonPopUp] = useState(false);
 
-
-    const onSubmit = (e) => {
-        e.preventDefault()
-    }
-
-
-
+    // Carte des utilsateurs
 
     return (
-        <div>
+        <div className='carto animate__animated animate__backInUp'>
 
             <div id={collab.id} key={index} className='list-collab col-12 card'>
 
@@ -52,7 +53,7 @@ function CollaboCard ({collab , index }) {
 
                             { collab.isAdmin = true &&
 
-                                <button className='btn-add' onSubmit={onSubmit}>Oui , supprimer</button>
+                                <button className='btn-add' onSubmit={delUser(collab.id)}>Oui , supprimer</button>
 
                             }
 
@@ -60,15 +61,15 @@ function CollaboCard ({collab , index }) {
                     </div> 
 
                 )
-                
-            }
 
+            }
 
 
             </div>
             
         </div>
     );
+
 };
 
 export default CollaboCard ;

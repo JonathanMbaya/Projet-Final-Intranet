@@ -10,6 +10,7 @@ function PopUp (props){
             <div className='popup-inner'>
 
                 {/* Bouton pour fermer la pop Up  */}
+                
                 <button className='close-btn btn-add' onClick= {() => props.setTrigger(false)}> <i class="fa-solid fa-ban"></i> </button>
 
                 {props.children}
