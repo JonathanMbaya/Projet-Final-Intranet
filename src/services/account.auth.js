@@ -14,7 +14,7 @@ let logout = () => {
     localStorage.removeItem('id')
     localStorage.removeItem('isAdmin')
     localStorage.removeItem('photo')
-    localStorage.removeItem('firsname')
+    localStorage.removeItem('firstname')
 }
 
 let isLogged = () => {

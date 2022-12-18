@@ -11,6 +11,8 @@ import CollabAdd from './views/CollabAdd'
 
 
 
+
+
 function App() {
 
   return (
@@ -28,10 +30,23 @@ function App() {
             </AuthGuard>
           }/>
 
-        <Route path='/ajouter' element={<CollabAdd/>}/>
-        <Route path='collaborateurs' element={<ListCollab/>}/>
-        <Route path='collaborateurs/edit/:id' element={<CollabEdit/>}/>
+          
 
+        <Route path='/ajouter' element={
+          <AuthGuard>
+            <CollabAdd/>
+          </AuthGuard>
+        }/>
+        <Route path='collaborateurs' element={
+          <AuthGuard>
+            <ListCollab/>
+          </AuthGuard>
+        }/>
+        <Route path='collaborateurs/edit/:id' element={
+          <AuthGuard>
+            <CollabEdit/>
+          </AuthGuard>
+        }/>
 
         <Route path='*' element={<Error/>}/>
         
