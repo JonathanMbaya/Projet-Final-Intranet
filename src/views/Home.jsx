@@ -1,6 +1,6 @@
 import './Home.css'
 import Header from '../components/Header'
-import CollabCard from '../components/CollabCard'
+import CollabCard from '../components/CollabRandomCard'
 
 
 function Home () {

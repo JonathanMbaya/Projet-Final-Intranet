@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 import './BtnAddUser.css';
 import './Header.css';
 import BtnConnexion from './BtnConnexion';
 
 function Header() {
 
+    const url = window.localStorage.getItem('photo');
+    const id = window.localStorage.getItem('id');
+    const firstname = window.localStorage.getItem('firstname');
 
     return (
 
@@ -16,6 +21,12 @@ function Header() {
                 </Link>
             </div>
 
+            <div className='icon-profil'>
+                <Link  to={`/collaborateurs/edit/${id}`}>
+                    <img className='profile' src={url} alt=""/>
+                </Link>
+                <p>Bonjour, {firstname}</p>
+            </div>
 
             <div>
                 <BtnConnexion/>

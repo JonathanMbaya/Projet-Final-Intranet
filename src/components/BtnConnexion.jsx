@@ -5,6 +5,8 @@ import { accountAuth } from "../services/Account.auth"
 
 function BtnConnexion () {
 
+    const isAdmin = window.localStorage.getItem('isAdmin');
+
     let navigate = useNavigate()
 
     const logout = () => {
@@ -12,37 +14,47 @@ function BtnConnexion () {
         navigate('/')
     }
 
-    if (!accountAuth.isLogged) {
+    if (isAdmin === 'false' ) {
 
         return (
             
             <div className='element-Nav'>
-                <button className='btn-nav-connexion'><i className="fa-solid fa-user"></i>Connexion</button>
+                
+                <Link to={'/collaborateurs'}><button className='btn-nav-list btn-add'><i className="fa-solid fa-list-ul"></i>Liste</button></Link>
+
+                <button onClick={logout} className='btn-nav-connexion btn-add'><i className="fa-solid fa-user"></i>Déconnexion</button>
             </div>
     
         )
-        
+
     }
 
     else {
 
         return (
 
-            <div className='element-Nav'>
+           <div>
+                {
+                    (isAdmin === 'true' &&
+                        
+                    <div className='element-Nav'>
+
+                        <Link to='/ajouter'>
+                            <button className='btn-add'><i className="fa-solid fa-person-circle-plus"></i>Ajouter</button>
+                        </Link>
 
 
 
-                <Link to='/ajouter'>
-                    <button className='btn-add'><i className="fa-solid fa-person-circle-plus"></i>Ajouter</button>
-                </Link>
+                        <Link to={'/collaborateurs'}><button className='btn-nav-list btn-add'><i className="fa-solid fa-list-ul"></i>Liste</button></Link>
 
+                        <button onClick={logout} className='btn-nav-connexion btn-add'><i className="fa-solid fa-user"></i>Déconnexion</button>
+            
+                        
+                    </div>
 
+                    )
+                }
 
-                <Link to={'/collaborateurs'}><button className='btn-nav-list btn-add'><i className="fa-solid fa-list-ul"></i>Liste</button></Link>
-
-                <button onClick={logout} className='btn-nav-connexion btn-add'><i className="fa-solid fa-user"></i>Déconnexion</button>
-    
-                
             </div>
 
         )

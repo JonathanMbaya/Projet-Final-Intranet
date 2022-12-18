@@ -1,7 +1,6 @@
 import './Login.css'
-
 import {useNavigate } from 'react-router-dom'
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form'
 
 import { accountAuth } from '../services/Account.auth';
@@ -21,6 +20,16 @@ function Login () {
         password: ''
     })
 
+
+    // useEffect(() => {
+    //     if (identify.data) {
+    //       const { token } = identify.data;
+    //       const { id, firstname, lastname, photo, isAdmin } =
+    //         identify.data;
+    //         localStorage.setItem({ token, id, firstname, lastname, photo, isAdmin });
+    //     }
+    //   }, [setIdentify]);
+
     const onChange = (e) => {
         setIdentify ({
             ...identify,
@@ -35,8 +44,16 @@ function Login () {
             .then (res => {
                 console.log(res)
                 accountAuth.saveToken(res.data.token)
+                window.localStorage.setItem("photo", res.data.user.photo)
+                window.localStorage.setItem("isAdmin", res.data.user.isAdmin)
+                window.localStorage.setItem("id", res.data.user.id)
+                window.localStorage.setItem("firstname", res.data.user.firstname)
                 navigate('/accueil')
             })
+
+            // .then (data => {
+            //     window.localStorage.setItem(data.user.isAdmin)
+            // })
 
             .catch(error => console.log(error))
     }

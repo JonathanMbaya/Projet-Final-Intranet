@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import Header from '../components/Header';
 import '../components/FilterCollab.css'
-import '../components/FormEdit.css'
+import '../components/Form.css'
 import CollaboCard from '../components/CollaboCard';
 
 import { collabService } from '../services/collabService';

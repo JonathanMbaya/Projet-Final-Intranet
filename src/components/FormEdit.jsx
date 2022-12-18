@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import { collabService } from '../services/collabService';
-import './FormEdit.css'
+import './Form.css'
 
 function FormEdit () {
 

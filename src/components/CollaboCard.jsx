@@ -4,10 +4,11 @@ import { useState } from 'react';
 import './CollabCard.css'
 
 
-
 import PopUp from './PopUp';
 
 function CollaboCard ({collab , index }) {
+    const isAdmin = window.localStorage.getItem('isAdmin');
+
     const [buttonPopUp , setButtonPopUp] = useState(false);
 
 
@@ -36,26 +37,30 @@ function CollaboCard ({collab , index }) {
                 <p><i className="fa-solid fa-cake-candles"></i> Anniversaire : {new Date(collab.birthdate).toLocaleDateString("fr-FR", { month: 'long', day: 'numeric' })}</p>
             </div>
 
-            {
+            {                
+                (isAdmin === 'true' &&
 
-                <div>
-                    <Link to={`edit/${collab.id}`}><button className='btn-add'>Modifier</button></Link>
-                    
-                    <button onClick={() => setButtonPopUp(true)} className='btn-add'>Supprimer</button>
+                    <div>
+                        <Link to={`edit/${collab.id}`}><button className='btn-add'>Modifier</button></Link>
+                        
+                        <button onClick={() => setButtonPopUp(true)} className='btn-add'>Supprimer</button>
 
-                    {/* onClick={delUser(collab.id)} */}
+                        {/* onClick={delUser(collab.id)} */}
 
-                    <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
-                        <h4>Voulez vous vraiment supprimer ce collaborateur ? </h4>
+                        <PopUp trigger={buttonPopUp} setTrigger={setButtonPopUp}>
+                            <h4>Voulez vous vraiment supprimer ce collaborateur ? </h4>
 
-                        { collab.isAdmin = true &&
+                            { collab.isAdmin = true &&
 
-                            <button className='btn-add' onSubmit={onSubmit}>Oui , supprimer</button>
+                                <button className='btn-add' onSubmit={onSubmit}>Oui , supprimer</button>
 
-                        }
+                            }
 
-                    </PopUp>
-                </div>
+                        </PopUp>
+                    </div> 
+
+                )
+                
             }
 
 

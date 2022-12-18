@@ -4,12 +4,17 @@ let login = (identify) => {
     return Axios.post('/api/login', identify)
 }
 
+
 let saveToken = (token) => {
     localStorage.setItem('token', token)
 }
 
 let logout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
+    localStorage.removeItem('isAdmin')
+    localStorage.removeItem('photo')
+    localStorage.removeItem('firsname')
 }
 
 let isLogged = () => {

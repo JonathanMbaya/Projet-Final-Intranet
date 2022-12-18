@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import {collabService } from '../services/collabService';
 
-import './FormEdit.css'
+import './Form.css'
 
 function FormAdd () {
 
