@@ -1,26 +1,46 @@
 .Navbar-home {
     position: fixed;
+    z-index: 1000;
     top: 0px;
-    margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     background-image: url('../assets/background-home.png');
     background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+h1{
+    font-size: 5em;
 }
 
 .element-Nav {
-    display: flex;
     padding: 1em;
 }
 
-.btn-nav-list{
-    margin-right: 2px;
-}
-.btn-nav-connexion{
-    margin-right: 2px;
-}
 
 span{
     color: #BE3455;
+}
+
+
+@media only screen and (max-width: 425px){
+
+    .Navbar-home {
+        position: fixed;
+        z-index: 1000;
+        top: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-image: url('../assets/background-home.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+    }
+
 }

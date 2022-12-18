@@ -4,7 +4,7 @@
     align-items: space-around;
 }
 
-.form-1 input, .form-2 input, select,#gender , #service {
+.form-1 input, .form-2 input, select, #gender , #service {
     width: 80%;
     padding: 10px;
     margin: 10px;
@@ -14,4 +14,30 @@
 
 label, #gender , #service{
     color:#BE3455 ;
+}
+
+
+
+
+@media only screen and (max-width: 425px){
+
+    .input-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .form-1 input, .form-2 input, select, #gender , #service {
+        width: 100%;
+        margin: 10px;
+        border: 2px solid #BE3455;
+        color: #BE3455;
+    }
+    
+    label, #gender , #service{
+        color:#BE3455 ;
+    }
+    
+    
 }

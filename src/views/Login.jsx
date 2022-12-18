@@ -1,13 +1,11 @@
 import './Login.css'
 
 import {useNavigate } from 'react-router-dom'
-import { useState, createContext } from 'react';
+import { useState} from 'react';
 import {useForm} from 'react-hook-form'
 
 import { accountAuth } from '../services/Account.auth';
 import HeaderConnex from '../components/HeaderConnex';
-
-export const LoginContext = createContext()
 
 
 function Login () {
@@ -45,7 +43,7 @@ function Login () {
 
     return (
 
-        <div className='login'>
+        <div className='container-fluid col-sm-12 login'>
 
             <HeaderConnex/>
 
@@ -53,34 +51,13 @@ function Login () {
 
                 <div className='text-connexion'>
 
-                    <h1>Connexion</h1>
+                    <h1 className=''>Connexion</h1>
 
                     <h2> Pour vous connecter, entrez votre identifiant et votre mot de passe</h2>
 
                 </div>
 
-    {/* 
-                <form id={identify.id} onSubmit={onSubmit} className='form-connexion'>
-
-                    <div className="group">
-                        <label htmlFor='email'>Adresse email </label>
-                        <input type="text" name="email" value={identify.email} onChange={onChange} placeholder='ex:jonathanmbaya@gmail.com'/>
-                    </div>
-
-                    <div className="group">
-                        <label htmlFor='password'>Mot de passe </label>
-                        <input type="password" name="password" value={identify.password} onChange={onChange}/>
-                    </div>
-
-                    <div className="group"> */}
-                        {/* <Link to={'/accueil'} className='nav-link'> */}
-                            {/* <input type="submit" value="Connexion" /> */}
-                        {/* </Link> */}
-                    {/* </div>
-
-                </form> */}
-
-                <form key={identify.id} id={identify.id} onSubmit={handleSubmit(onSubmit)} className='form-connexion'>
+                <form  id={identify.id} onSubmit={handleSubmit(onSubmit)} className='form-connexion'>
                     <div className='group'>
                         <label htmlFor='email'>Email</label>
                         <input

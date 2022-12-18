@@ -14,21 +14,19 @@ import CollabAdd from './views/CollabAdd'
 function App() {
 
   return (
+
     <div className="App">
 
       <Routes>
         <Route index element={<Login/>}/>
 
-        <Route path='/login' element={
-          <Login/>
-        }/>
+        <Route path='/login' element={<Login/>}/>
 
-
-        <Route path='/accueil' element={
-          <AuthGuard>
-            <Home/>
-          </AuthGuard>
-        }/>
+          <Route path='/accueil' element={
+            <AuthGuard>
+              <Home/>
+            </AuthGuard>
+          }/>
 
         <Route path='/ajouter' element={<CollabAdd/>}/>
         <Route path='collaborateurs' element={<ListCollab/>}/>
@@ -39,6 +37,8 @@ function App() {
         
       </Routes>
     </div>
+
+
   )
 }
 

@@ -1,14 +1,16 @@
 import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import Header from '../components/Header';
 import '../components/FilterCollab.css'
 import '../components/FormEdit.css'
+import CollaboCard from '../components/CollaboCard';
+
 import { collabService } from '../services/collabService';
+import { accountAuth } from '../services/Account.auth';
 
 import './ListCollab.css'
-import { accountAuth } from '../services/Account.auth';
+import '../components/FilterCollab.css'
 
 
  function ListCollab () {
@@ -17,11 +19,13 @@ import { accountAuth } from '../services/Account.auth';
 
      const [collabs, setCollab] = useState ([]);
      const [searchTerm, setSearchTerm] = useState([]);
-     const [filters, setFilters] = useState({
+     const [elementFilter, setelementFilter] = useState({
         searchBar: "",
         searchcase: "",
         category: "all"
     })
+
+  
 
 
     const flag = useRef(false)
@@ -51,71 +55,91 @@ import { accountAuth } from '../services/Account.auth';
     }
 
 
-    const handleSearchTerm = (e) => {
+    const onChange = (e) => {
         const { name, value } = e.target
-        filters[name] = value
-        setFilters(filters)
-        let index
-        switch (filters.searchcase) {
+        elementFilter[name] = value
+        setelementFilter(elementFilter)
+        let champ
+        switch (elementFilter.searchcase) {
             case "1":
-                index = collabs.filter(collab => (collab.firstname.toLowerCase().includes(filters.searchBar.toLowerCase()) || collab.lastname.toLowerCase().includes(filters.searchBar.toLowerCase())))
+                champ = collabs.filter(collab => (collab.firstname.toLowerCase().includes(elementFilter.searchBar.toLowerCase()) || collab.lastname.toLowerCase().includes(elementFilter.searchBar.toLowerCase())))
                 break;
             case "2":
-                index = collabs.filter(collab => (collab.city.toLowerCase().includes(filters.searchBar.toLowerCase()) || collab.country.toLowerCase().includes(filters.searchBar.toLowerCase())))
+                champ = collabs.filter(collab => (collab.city.toLowerCase().includes(elementFilter.searchBar.toLowerCase()) || collab.country.toLowerCase().includes(elementFilter.searchBar.toLowerCase())))
                 break;
             default:
                 break;
         }
-        if (filters.category !== "all") {
-            index = index.filter(collab => (collab.service.toLowerCase() === filters.category.toLowerCase()))
+        if (elementFilter.category !== "all") {
+            champ = champ.filter(collab => (collab.service.toLowerCase() === elementFilter.category.toLowerCase()))
         }
-        setSearchTerm(index)
+        setSearchTerm(champ)
 
 
     };
 
-    const delUser = (id) => {
-        console.log(id)
-        collabService.deleteUser(id)
-        .then(res =>{
-            accountAuth.getToken(res.token)
-            console.log(res)
-            setCollab(collabs.filter(collab => collab.id != id))
-        })
-        .catch(err => console.log(err))
 
+    // const delUser = (id) => {
+    //     const deleteValid = () => {
+    //         collabService.deleteUser(id)
+    //         .then(res =>{
+    //             accountAuth.getToken(res.token)
+    //             console.log(res)
+    //             setCollab(collabs.filter(collab => collab.id != id))
+    //         })
+    //         .catch(err => console.log(err))
+    //     }
 
-    }
+    //     deleteValid(id)
+    // }
+
 
     return (
         <div className='list col-12'>
 
+        <div className='scrollUp'>
+            <i class="fa-solid fa-chevron-up"></i>
+        </div>
+
+
+
             <Header/>
 
-            <div className='container-fluid'>
+            <div className='container-fluid list-filter'>
 
-                <h1>Liste des collaborateurs</h1>
+                <h1 className='text-center'>Liste des collaborateurs</h1>
+
+                <div className='text-center'>
+                    <h3>Trouvez vos collaborateurs grâce à notre filtre</h3>
+
+                    <p>Sélectionnez vos critères de recherche et tapez le nom ou la localisation dans la barre de recherche </p>
+
+                </div>
+
+
 
                 {/* <FilterCollab/> */}
 
-                <form onSubmit={onSubmit} className='row'>
+                <form onSubmit={onSubmit} className='container col-md-12 row'>
 
-                    <div className='group-filter'>
-                        <input type="text" id="searchBar" name="searchBar" placeholder='Recherche' onChange={handleSearchTerm} />
+                    <div className='group-filter col-md-2'>
+                        Filtre <i class="fa-solid fa-arrow-down-wide-short"></i>
                     </div>
 
-                    <div className='group-filter'>
-                        <h4 htmlFor="searchby">Rechercher par :</h4>
-                        <select id="searchcase" name="searchcase" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleSearchTerm}>
+                    <div className='group-filter col-md-3'>
+                        <input className='col-md-4' type="text" id="searchBar"  name="searchBar" placeholder='Recherche' onChange={onChange} />
+                    </div>
+
+                    <div className='group-filter col-md-3'>
+                        <select id="searchcase" name="searchcase" className="form-select form-select-lg mb-3 col-md-4" aria-label=".form-select-lg example" onChange={onChange}>
                             <option select>Choisis un critère</option>
                             <option value="1">Nom</option>
                             <option value="2">Localisation</option>
                         </select>
                     </div>
 
-                    <div className='group-filter'>
-                        <h4 htmlFor="searchby">Catégorie</h4>
-                        <select id="category" name="category" className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={handleSearchTerm}>
+                    <div className='group-filter col-md-3'>
+                        <select id="category" name="category" className="form-select form-select-lg mb-3 col-md-4" aria-label=".form-select-lg example" onChange={onChange}>
                             <option value="all">Tous</option>
                             <option value="Technique">Technique</option>
                             <option value="Marketing<">Marketing</option>
@@ -125,39 +149,23 @@ import { accountAuth } from '../services/Account.auth';
 
                 </form>
 
-                <div className='container row list-collab-all col-md-12 col-sm-12 col-12 offset-md-1'>
+                <div className='container col-md-12 col-sm-12 col-12 '>
                     {
                         searchTerm && 
-                        searchTerm.map((collab) =>
 
-                    <div id={collab.id} key={collab.id} className='list-collab col-md-4 offset-md-2'>
+                        <div className='results mt-5 pb-5'>
 
-                        <div className='service'>
-                            <h4>{collab.service}</h4>
+                            {searchTerm.map((collab, index) =>(
+
+                            <CollaboCard
+                            collab={collab} key={index} 
+                            />
+
+
+                            ))}
+
                         </div>
-
-                        <div className='group-info'>
-                            <img className='img-fluid img-user' src={collab.photo} />
-                            <h4><i className="fa-solid fa-user"></i> {collab.firstname} {collab.lastname}</h4>
-                            <h4><i className="fa-solid fa-location-dot"></i> {collab.city}, {collab.country}</h4>
-                            <h4><i className="fa-solid fa-inbox"></i> {collab.email}</h4>
-                            <h4><i className="fa-solid fa-phone"></i> {collab.phone}</h4>
-                            <h4><i className="fa-solid fa-cake-candles"></i> Anniversaire : {collab.birthdate}</h4>
-                        </div>
-
-                        {
-
-                            <div>
-                                <Link to={`edit/${collab.id}`}><button className='btn-add'>Modifier</button></Link>
-                                <button onClick={delUser(collab.id)} className='btn-add'>Supprimer</button>
-                            </div>
-                        }
-
-
-
-                    </div>
-
-                    )}
+                    }
 
                 </div>
 

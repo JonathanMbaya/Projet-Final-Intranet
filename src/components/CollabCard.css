@@ -1,6 +1,6 @@
 .card {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     background-color:#BE3455;
-    padding: 5px 20px;
+    padding: 5px 10px;
     border-radius: 0px 0px 10px 10px;
     color: white;
 }
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
 }
 
 .img-user {
@@ -31,4 +31,49 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+@media only screen and (max-width: 425px){
+
+
+    .card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 20px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    
+    .service {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:#BE3455;
+        padding: 5px 10px;
+        border-radius: 0px 0px 10px 10px;
+        color: white;
+    }
+    
+    .group-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    .img-user {
+        border-radius: 100%;
+    }
+    
+    .btn-random{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h3{
+        font-size: 20px;
+    }
+
 }

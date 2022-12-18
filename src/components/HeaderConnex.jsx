@@ -8,7 +8,7 @@ function HeaderConnex() {
 
             <div className='element-Nav'>
                 
-                <h1><span>In.</span>tranet</h1>
+                <h1 className='col-12'><span>In.</span>tranet</h1>
 
                 <h1></h1>
             </div>

@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { accountAuth } from "../services/Account.auth"
 
 
 function BtnConnexion () {
-
 
     let navigate = useNavigate()
 
@@ -12,7 +11,6 @@ function BtnConnexion () {
         accountAuth.logout()
         navigate('/')
     }
-
 
     if (!accountAuth.isLogged) {
 
@@ -29,27 +27,24 @@ function BtnConnexion () {
     else {
 
         return (
+
             <div className='element-Nav'>
 
-                {
 
-                    <Link to='/ajouter'>
-                        <button className='btn-add'><i className="fa-solid fa-person-circle-plus"></i>Ajouter</button>
-                    </Link>
-                }
+
+                <Link to='/ajouter'>
+                    <button className='btn-add'><i className="fa-solid fa-person-circle-plus"></i>Ajouter</button>
+                </Link>
 
 
 
                 <Link to={'/collaborateurs'}><button className='btn-nav-list btn-add'><i className="fa-solid fa-list-ul"></i>Liste</button></Link>
 
-                <div>
-                    <button onClick={logout} className='btn-nav-connexion btn-add'><i className="fa-solid fa-user"></i>Déconnexion</button>
-                </div>
+                <button onClick={logout} className='btn-nav-connexion btn-add'><i className="fa-solid fa-user"></i>Déconnexion</button>
+    
                 
-
             </div>
 
-    
         )
 
     }

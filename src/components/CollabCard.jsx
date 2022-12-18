@@ -16,55 +16,77 @@ function CollabCard (){
        const [card, setCard] = useState ({});
 
        const flag = useRef(false)
+
+
+       useEffect(() => {   
+    
+  
+
+            collabService.getCollabRandom()
+            .then(res =>{ 
+                accountAuth.getToken(res.data.token)
+                console.log(res.data)
+                setCard(res.data)
+            })
+
+            .catch(err => console.log(err))
+  
+
+    }, []);
    
        // Fonction de chargement de la requête axios à chaque affichage de la page (useEffect) depuis le fichier request.jsx
+
+       const onClick = () => {
+
+            const againCollab = () => {   
+    
+        
+                    collabService.getCollabRandom()
+                    .then(res =>{ 
+                        accountAuth.getToken(res.data.token)
+                        console.log(res.data)
+                        setCard(res.data)
+                    })
+        
+                    .catch(err => console.log(err))
+        
+        
+            }
+
+            againCollab()
+
+       }
      
-       useEffect(() => {   
-   
-           if (flag.current === false){
-   
-               collabService.getCollabRandom()
-               .then(res =>{ 
-                   accountAuth.getToken(res.data.token)
-                   console.log(res.data)
-                   setCard(res.data)
-               })
-   
-               .catch(err => console.log(err))
-           }
-   
-           return () => flag.current = true
-     
-       }, []);
+
    
 
 
     return (
         <div>
             
-            <div id={card.id} key={card.id} className='container card'>
+            <div id={card.id} key={card.id} className='container-fluid col-12 card'>
 
                 <div className='service'>
-                    <h4>{card.service}</h4>
+                    <h5>{card.service}</h5>
                 </div>
 
                 <div className='group-info'>
                     <img className='img-fluid img-user' src={card.photo} />
 
                     <div>
-                        <h3><i class="fa-solid fa-user"></i>{card.firstname} {card.lastname}</h3>
+                        <p><i class="fa-solid fa-user"></i>    {card.firstname} {card.lastname}</p>
                     </div>
                     <div>
-                        <h3><i className="fa-solid fa-location-dot"></i>{card.city}, {card.country}</h3>
+                        <p><i className="fa-solid fa-location-dot"></i>    {card.city}, {card.country}</p>
                     </div>
                     <div>
-                        <h3><i className="fa-solid fa-inbox"></i>{card.email}</h3>
+                        <p><i className="fa-solid fa-inbox"></i>    {card.email}</p>
                     </div>
                     <div>
-                        <h3><i className="fa-solid fa-phone"></i>{card.phone}</h3>
+                        <p><i className="fa-solid fa-phone"></i>    {card.phone}</p>
                     </div>
                     <div>
-                        <h3><i className="fa-solid fa-cake-candles"></i>{card.birthdate}</h3>
+                        <p><i className="fa-solid fa-cake-candles"></i>    {card.birthdate}</p>
                     </div>
 
                 </div>
@@ -73,7 +95,7 @@ function CollabCard (){
 
             <div className='btn-random'>
                 <Link to='/accueil'>
-                    <button className='btn-add' onClick={collabService.getCollabRandom}>
+                    <button className='btn-add' onClick={onClick}>
                         Dire bonjour à quelqu'un d'autre
                     </button>
                 </Link>

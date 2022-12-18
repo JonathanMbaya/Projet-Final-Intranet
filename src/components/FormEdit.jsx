@@ -48,11 +48,11 @@ function FormEdit () {
  
                 <div className='container input-form'>
 
-                    <div className='col-md-6 form-1'>
+                    <div className='col-md-6 col-6 form-1'>
 
                         <div className="contaier group">
                             <label htmlFor="civile">Civilité</label>
-                            <select className="col-md-6 form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                            <select className="col-md-6 form-select form-select-lg mb-3 col-12" aria-label=".form-select-lg example"
                                 type="text"
                                 name="gender"
                                 id="gender"
@@ -99,9 +99,10 @@ function FormEdit () {
                             <input type="password" name="password" value={user.password} placeholder='(min. 8 caractères)' onChange={onChange}/>
                         </div>
 
-                        </div>
+                    </div>
+                        
 
-                        <div className='col-md-6 form-2'>
+                    <div className='col-md-6 col-6  form-2'>
 
                         <div className="group">
                             <label htmlFor="phone">Téléphone</label>
@@ -133,9 +134,6 @@ function FormEdit () {
                 </div>
                 
                
-
-
-
                 <div className="group">
                     <input className='btn-add' type="submit" value="Modifier" />
                 </div>

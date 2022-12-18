@@ -38,3 +38,40 @@
     border-radius: 0px 0px 10px 10px;
     color: white;
 }
+
+.group-filter input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.list-filter form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px !important;
+    margin-bottom: 60px !important;
+    width: 100%;
+}
+
+.results{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.scrollUp{
+    position: fixed;
+    bottom: 80px;
+    right: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #BE3455;
+    color: white;
+    height: 30px;
+    width: 30px;
+}
